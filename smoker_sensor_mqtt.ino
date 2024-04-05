@@ -706,56 +706,39 @@ void loop(){
     delay(1000);
     digitalWrite(ledPinRed, LOW);   // sets the LED off
 
-    Serial.println("---------------------------------------------");
-    Serial.println("");
+    Serial.print("Raw_Smoker_Temp_in_C:");
+    Serial.println(rawTemp, 5);
+    
+    Serial.print("Corrected_Smoker_Temp_in_C:");
+    Serial.println(correctedTemp, 5);
 
-    Serial.print("Raw Smoker Temp in C = ");
-    Serial.print(rawTemp, 5);
-    Serial.println();
-
-    Serial.print("Corrected Smoker Temp in C = ");
-    Serial.print(correctedTemp, 5);
-    Serial.println("");
-
-    Serial.print("Raw Smoker Temp in F = ");
+    Serial.print("Raw_Smoker_Temp_in_F:");
     Serial.println(rawTempF, 5);
-    Serial.println();
 
-    Serial.print("Corrected Smoker Temp in F = ");
+    Serial.print("Corrected_Smoker_Temp_in_F:");
     Serial.println(correctedTempF, 5);
-    Serial.println("");
 
-    Serial.print("Smoker Temp (as published) = ");
-    Serial.print(ts);
-    Serial.print(" F");
-    Serial.println();
-    Serial.println();
+    Serial.print("Smoker_Temp_as published_in_F:");
+    Serial.println(ts);
 
-    Serial.print("Ave Thermistor Resistance = ");
-    Serial.print(Rmave);
-    Serial.print(" Ohms");
-    Serial.println();
+    Serial.print("Ave_Thermistor_Resistance_in_Ohms:");
+    Serial.println(Rmave);
     
-    Serial.print("Food Temp (as published) = ");
-    Serial.print(tf);
-    Serial.print(" F");
-    Serial.println("");
-
-    Serial.println("");
+    Serial.print("Food_Temp_as published_in_F:");
+    Serial.println(tf);
     
-    Serial.println("Network Configuration: ");
-    Serial.print("Local IP: ");
-    Serial.println(WiFi.localIP());
-    Serial.print("Host Name: ");
-    Serial.println(WiFi.hostname());
-    Serial.print("useMqtt = ");
-    Serial.println(useMqtt);
+    ////Serial.println("Network Configuration: ");
+    ////Serial.print("Local IP: ");
+    ////Serial.println(WiFi.localIP());
+    ////Serial.print("Host Name: ");
+    ////Serial.println(WiFi.hostname());
+    ////Serial.print("useMqtt = ");
+    ////Serial.println(useMqtt);
+
     if (useMqtt){
-      Serial.print("Mqtt Status = ");
+      Serial.print("Mqtt_Status:");
       Serial.println(client.state());
     }
-    Serial.println("");
-    
 
     // publish topics to mqtt broker
     if (useMqtt){
