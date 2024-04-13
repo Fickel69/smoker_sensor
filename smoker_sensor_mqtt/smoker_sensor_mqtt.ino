@@ -77,8 +77,8 @@ int ThermistorPin = A0;
 const float Cmax = 1024.102; // max counts for analog input pin @ 3.3vdc
 
 // Put your thermister constant values here
-const float Rb = 655000.0; // Value of voltage divider resistor - lower makes number higher?
-const float Offset = 1.0; // Was .9345 for thermistor A
+const float Rb = 99600.0; // Value of voltage divider resistor
+const float Offset = .9345; // Was .9345 for thermistor A
 
 // Only used if you use the Beta Value for calculation:
 //const float Beta = 3936.28; 
@@ -86,12 +86,11 @@ const float Offset = 1.0; // Was .9345 for thermistor A
 //const float To = 298.15;   // To = Room Temperature in K (25C/77F) - don't change
 
 // Only used if you use the Steinhart-Hart Coefficients for calculation:
-const float C1 = 0.5675051101e-3; // C1 = coefficient A
-const float C2 = 1.945621200e-4;  // C2 = coefficient B
-const float C3 = 2.497897592e-7;  // C3 = coefficient C
+const float C1 = 0.1487486577e-3; // C1 = coefficient A
+const float C2 = 3.218772236e-4;  // C2 = coefficient B
+const float C3 = -1.915207795e-7;  // C3 = coefficient C
 
 //put your linearization equation constants here
-////const int HighCutoff = 115; // value above which you use the high linearization equation
 const int HighCutoff = 115; // value above which you use the high linearization equation
 const float Mhigh = .26;    // slope value for the high side equation
 const float Mlow = .05;     // slope value for the low side equation
@@ -720,7 +719,7 @@ void loop(){
     delay(1000);
     digitalWrite(ledPinRed, LOW);   // sets the LED off
 
-    ////u8g2.clearBuffer();
+    u8g2.clearBuffer();
     u8g2.drawLine(0, 15, 129, 15);
     u8g2.drawLine(63, 0, 63, 65);
     u8g2.setFont(u8g2_font_8x13_tf); // Width 8, Hight 13
@@ -731,15 +730,15 @@ void loop(){
     dtostrf(ts, 1, 0, ChValue);
     cursor_w = ((64-(strlen(ChValue)*21))/2);
     
-    Serial.print("ts XXXXXXXXXXXXX");
-    Serial.print(ts);
-    Serial.print(",");
-    Serial.print(ChValue);
-    Serial.print(",");
-    Serial.print(strlen(ChValue));
-    Serial.print(",");
-    Serial.print(cursor_w);
-    Serial.println("XXXXXXXXXXXXX");
+    ////Serial.print("ts XXXXXXXXXXXXX");
+    ////Serial.print(ts);
+    ////Serial.print(",");
+    ////Serial.print(ChValue);
+    ////Serial.print(",");
+    ////Serial.print(strlen(ChValue));
+    ////Serial.print(",");
+    ////Serial.print(cursor_w);
+    ////Serial.println("XXXXXXXXXXXXX");
 
     u8g2.setCursor(cursor_w, 15+33);
     u8g2.print(ts, 0);
@@ -747,15 +746,15 @@ void loop(){
     dtostrf(tf, 1, 0, ChValue);
     cursor_w = ((64-(strlen(ChValue)*21))/2);
 
-    Serial.print("tf XXXXXXXXXXXXX");
-    Serial.print(tf);
-    Serial.print(",");
-    Serial.print(ChValue);
-    Serial.print(",");
-    Serial.print(strlen(ChValue));
-    Serial.print(",");
-    Serial.print(cursor_w);
-    Serial.println("XXXXXXXXXXXXX");
+    ////Serial.print("tf XXXXXXXXXXXXX");
+    ////Serial.print(tf);
+    ////Serial.print(",");
+    ////Serial.print(ChValue);
+    ////Serial.print(",");
+    ////Serial.print(strlen(ChValue));
+    ////Serial.print(",");
+    ////Serial.print(cursor_w);
+    ////Serial.println("XXXXXXXXXXXXX");
 
     u8g2.setCursor(cursor_w+64, 15+33);
     u8g2.print(tf, 0);
